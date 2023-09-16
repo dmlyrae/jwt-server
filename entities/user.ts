@@ -11,16 +11,13 @@ export class User {
 	email: string;
 
 	@Column()
-	isActivated: boolean;
+	isActive: boolean;
 
 	@Column()
 	firstName: string;
 
 	@Column()
 	lastName: string;
-
-	@Column()
-	isActive: boolean;
 
 	@Column()
 	activationLink: string;

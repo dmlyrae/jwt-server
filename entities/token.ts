@@ -11,7 +11,6 @@ export class Token {
 	@Column()
 	refreshToken: string;
 
-
     @Column({
         primaryKeyConstraintName: "user_fk",
 	})

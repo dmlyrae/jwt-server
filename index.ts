@@ -1,20 +1,25 @@
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import * as connect from "./connect/connect"
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import { router } from "./router";
 import { AppDataSource } from "./connect/connect"
+import { errorMiddleware } from "./middlewares/error-middleware";
 
-dotenv.config();
+dotenv.config()
 
-const PORT = parseInt(process.env.PORT ?? '5000');
-const app: Express = express();
+const PORT = parseInt(process.env.PORT ?? '5000')
+const app: Express = express()
 
-app.use(express.json());
-app.use(cookieParser());
-app.use(cors());
-app.use(`/api`, router);
+
+/* MIDDLEWARES */
+/* *********** */
+
+app.use(express.json()) // https://expressjs.com/en/4x/api.html#express.json
+app.use(cookieParser()) // https://www.npmjs.com/package/cookie-parser
+app.use(cors()) // https://expressjs.com/en/resources/middleware/cors.html
+app.use(`/api`, router)
+app.use(errorMiddleware)
 
 const start = async () => {
     try {
@@ -31,4 +36,4 @@ const start = async () => {
     }
 }
 
-start();
+start()
